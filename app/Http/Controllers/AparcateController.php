@@ -19,16 +19,17 @@ class AparcateController extends Controller
     {
         return response()->json([
             'status' => 'error',
-            'message' => $message ? $message : 'error inesperado.'
+            'message' => $message ? $message : 'error inesperado.',
+            'entity' => null
         ]);
     }
 
-    private function response_success($message = null, $object = null)
+    private function response_success($message = null, $entity = null)
     {
         return response()->json([
             'status' => 'success',
             'message' => $message ? $message : 'acción correcta.',
-            'object' => $object
+            'entity' => $entity
         ]);
     }
 
