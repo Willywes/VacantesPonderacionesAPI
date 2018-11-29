@@ -24,3 +24,10 @@ Route::get('/', function() {
 //});
 
 Route::get('/getListColleges', 'MainScraping@getListColleges')->name('getListColleges');
+
+Route::prefix('aparcate')->group(function (){
+
+    Route::post('login', 'AparcateController@login');
+    Route::get('parkings', 'AparcateController@parkings');
+
+});
