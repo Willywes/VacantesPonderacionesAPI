@@ -50,9 +50,43 @@ class AparcateController extends Controller
 
     }
 
-    public function parkings(){
+    public function parkings(Request $request){
+
+        $city = strtolower($request->city);
+        $period = strtolower($request->period);
+        $date = $request->date;
+        $price = $request->price;
+
         try {
-            $parkings = Parking::with('user')->orderBy('created_at', 'asc')->get();
+
+            $parkings = Parking::with('user');
+
+            if($city){
+                $parkings = $parkings->where('city', $city);
+            }
+
+            if($period){
+                $parkings = $parkings->where('period', $period);
+            }
+
+            if($price){
+
+                $parkings = $parkings->orderBy('price', 'asc');
+
+            }else if($date){
+
+                $parkings = $parkings->orderBy('created_at', 'desc');
+
+            }else {
+
+                $parkings = $parkings->orderBy('id', 'asc');
+
+            }
+
+
+
+            $parkings = $parkings->get();
+
             return $this->response_success('listado de parkings', $parkings);
         } catch (\Exception $ex) {
             return $this->response_error($ex->getMessage());
