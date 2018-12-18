@@ -29,5 +29,6 @@ Route::prefix('aparcate')->group(function (){
 
     Route::post('login', 'AparcateController@login');
     Route::get('parkings', 'AparcateController@parkings');
+    Route::post('parkings/store', 'AparcateController@store');
 
 });

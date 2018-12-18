@@ -50,6 +50,15 @@ class AparcateController extends Controller
 
     }
 
+    public function store(Request $request){
+        try {
+            Parking::create($request->all());
+            return $this->response_success('parking creado');
+        } catch (\Exception $ex) {
+            return $this->response_error($ex->getMessage());
+        }
+    }
+
     public function parkings(Request $request){
 
         $city = strtolower($request->city);
