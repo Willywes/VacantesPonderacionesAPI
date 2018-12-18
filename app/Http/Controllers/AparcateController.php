@@ -40,10 +40,12 @@ class AparcateController extends Controller
             $user = User::where('email', $request->email)->where('password', $request->password)->first();
 
             if ($user) {
-                return $this->response_success('usuario autenticado correctamente', $user);
+                //return $this->response_success('usuario autenticado correctamente', $user);
+                return 1;
             }
 
-            return $this->response_error('usuario o contraseña incorrecta');
+            //return $this->response_error('usuario o contraseña incorrecta');
+            return 0;
         } catch (\Exception $ex) {
             return $this->response_error($ex->getMessage());
         }
